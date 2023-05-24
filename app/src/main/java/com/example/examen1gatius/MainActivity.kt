@@ -19,24 +19,28 @@ class MainActivity : AppCompatActivity() {
         recyclerView = findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this) //va o no va????????????
 
+        val name = intent.getStringExtra("name")
 
         val adapter = AlumnoAdapter(applicationContext)
         recyclerView.adapter = adapter
         adapter.submitList(getListaAlumnos())
 
-        val preferences = getSharedPreferences("LoginPref", MODE_PRIVATE)
-        val userNamePref = preferences.getString("name", "")
+//        val preferences = getSharedPreferences("InicioPref", MODE_PRIVATE)
+//        val userNamePref = preferences.getString("name", "")
 
 ///VINCULAMOS PARA QUE AL TAPEAR VAYA A DETALLES/////////////////////////////////////////////////////////////////////////////////
         adapter.onItemClickListener = { alumno ->
             val intent = Intent(this, DetailActivity::class.java)
             intent.putExtra("name", alumno.name)
+            intent.putExtra("edad", alumno.age)
             intent.putExtra("url", alumno.url)
             startActivity(intent)
+
         }
     }
 
     private fun getListaAlumnos(): MutableList<Alumno> {
+
         return mutableListOf(
             Alumno(1, "HOLA" , 22, "https://cdn-icons-png.flaticon.com/512/6075/6075889.png"),
             Alumno(2,"Juan Carlos", 21, "https://cdn-icons-png.flaticon.com/512/1734/1734072.png"),

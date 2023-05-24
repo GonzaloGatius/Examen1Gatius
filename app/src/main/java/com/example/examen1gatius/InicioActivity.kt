@@ -28,13 +28,14 @@ class InicioActivity : AppCompatActivity() {
                 {
                     val userName = editTextIngresoNombre.text.toString()
 
+
                     val preferences = getSharedPreferences("InicioPref", MODE_PRIVATE)
                     val editor = preferences.edit()
                     editor.putString("name", userName)
                     editor.apply()
 
                     val intent = Intent (this, MainActivity::class.java)
-                    intent.putExtra("name", userName) //??????????????????????????????
+                   // intent.putExtra("name", userName) //??????????????????????????????
                     startActivity(intent)
                 }
         }

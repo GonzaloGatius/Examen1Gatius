@@ -25,6 +25,7 @@ class DetailActivity : AppCompatActivity() {
         val url = bundle?.getString("url") ?: ""
 
         textViewName.text = nombre
+        textViewAge.text = edad
         Glide.with(applicationContext)
             .load(url)
             .into(imageView)

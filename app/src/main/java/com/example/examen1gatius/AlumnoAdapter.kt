@@ -14,6 +14,7 @@ import com.bumptech.glide.Glide
 
 class AlumnoAdapter(val context: Context): ListAdapter<Alumno, AlumnoAdapter.ViewHolder>(DiffCallBack) {
 
+
     lateinit var onItemClickListener: (Alumno) -> Unit
 
     inner class ViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
@@ -28,11 +29,12 @@ class AlumnoAdapter(val context: Context): ListAdapter<Alumno, AlumnoAdapter.Vie
             textViewNombreItem.text = "Nombre: " + alumno.name
             textViewEdadItem.text = "edad: " + alumno.age
 
-
             Glide.with(context)
                 .load(alumno.url)
                 .into(imageViewImagenItem)
 
+            view.setOnClickListener{
+                onItemClickListener(alumno)}
         }
 
 
@@ -50,8 +52,8 @@ class AlumnoAdapter(val context: Context): ListAdapter<Alumno, AlumnoAdapter.Vie
     }
 
     override fun onBindViewHolder(holder: AlumnoAdapter.ViewHolder, position: Int) {
-        val pokemon = getItem(position)
-        holder.bind(pokemon)
+        val alumno = getItem(position)
+        holder.bind(alumno)
     }
 
     companion object DiffCallBack : DiffUtil.ItemCallback<Alumno>() {
@@ -64,3 +66,4 @@ class AlumnoAdapter(val context: Context): ListAdapter<Alumno, AlumnoAdapter.Vie
         }
     }
 }
+
