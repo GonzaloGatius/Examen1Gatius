@@ -1,5 +1,6 @@
 package com.example.examen1gatius
 
+import android.app.ActionBar
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -25,9 +26,6 @@ class MainActivity : AppCompatActivity() {
         recyclerView.adapter = adapter
         adapter.submitList(getListaAlumnos())
 
-//        val preferences = getSharedPreferences("InicioPref", MODE_PRIVATE)
-//        val userNamePref = preferences.getString("name", "")
-
 ///VINCULAMOS PARA QUE AL TAPEAR VAYA A DETALLES/////////////////////////////////////////////////////////////////////////////////
         adapter.onItemClickListener = { alumno ->
             val intent = Intent(this, DetailActivity::class.java)
@@ -36,13 +34,16 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra("url", alumno.url)
             startActivity(intent)
 
+
         }
     }
-
+    // NO GUARDA EL SHARED CUANDO VUELVO A ENTRAR
+    //"editTextIngresoName" tiene que ser igual al "name" de mi "Alumno"
     private fun getListaAlumnos(): MutableList<Alumno> {
-
+        val preferences = getSharedPreferences("InicioPref", MODE_PRIVATE)
+        val userNamePref = preferences.getString("name", "HOLA")
         return mutableListOf(
-            Alumno(1, "HOLA" , 22, "https://cdn-icons-png.flaticon.com/512/6075/6075889.png"),
+            Alumno(1, userNamePref.orEmpty() , 22, "https://cdn-icons-png.flaticon.com/512/6075/6075889.png"),
             Alumno(2,"Juan Carlos", 21, "https://cdn-icons-png.flaticon.com/512/1734/1734072.png"),
             Alumno(3,"María", 27, "https://cdn-icons-png.flaticon.com/512/2810/2810758.png"),
             Alumno(4,"Pablo", 29, "https://cdn-icons-png.flaticon.com/512/1754/1754810.png"),
@@ -55,5 +56,6 @@ class MainActivity : AppCompatActivity() {
             Alumno(11,"Cecilia", 29, "https://cdn-icons-png.flaticon.com/512/2810/2810763.png"),
 
             )
+
     }
 }

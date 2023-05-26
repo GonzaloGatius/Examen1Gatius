@@ -21,11 +21,11 @@ class DetailActivity : AppCompatActivity() {
 
         val bundle = intent.extras
         val nombre = bundle?.getString("name", "")
-        val edad = bundle?.getString("edad", "")
+        val edad = bundle?.getInt("edad", 0)
         val url = bundle?.getString("url") ?: ""
 
-        textViewName.text = nombre
-        textViewAge.text = edad
+        textViewName.text = "Nombre: " +  nombre
+        textViewAge.text = "Edad: " + edad.toString()
         Glide.with(applicationContext)
             .load(url)
             .into(imageView)
