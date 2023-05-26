@@ -5,7 +5,8 @@
     android:id="@+id/recyclerViewAlumno"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@color/RosaClaro">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
